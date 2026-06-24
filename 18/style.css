@@ -1,0 +1,361 @@
+/* ========================================
+   GRID-СЕТКА
+   ======================================== */
+
+/* ===== 1. СОЗДАНИЕ GRID ===== */
+.quotes-grid {
+    display: grid;
+    /* grid-template-columns - колонки */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    
+    /* gap - расстояние между элементами */
+    gap: 20px;
+    
+    /* Выравнивание */
+    justify-content: center;
+    align-items: start;
+}
+
+/* ===== 2. УПРАВЛЕНИЕ КОЛОНКАМИ ===== */
+
+/* Фиксированное количество колонок */
+.grid-fixed {
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 равные колонки */
+}
+
+/* Разные размеры колонок */
+.grid-different {
+    grid-template-columns: 200px 1fr 300px;
+    /* 200px | остальное | 300px */
+}
+
+/* Автоматическое заполнение */
+.grid-auto {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    /* Автоматически подстраивается */
+}
+
+/* ===== 3. УПРАВЛЕНИЕ СТРОКАМИ ===== */
+
+/* Фиксированная высота строк */
+.grid-rows {
+    grid-template-rows: 100px 200px auto;
+    /* первая: 100px, вторая: 200px, третья: auto */
+}
+
+/* Автоматические строки */
+.grid-auto-rows {
+    grid-auto-rows: minmax(120px, auto);
+    /* Минимум 120px, может растягиваться */
+}
+
+/* ===== 4. РАСПОЛОЖЕНИЕ ЭЛЕМЕНТОВ ===== */
+
+/* Элемент занимает несколько колонок */
+.item-wide {
+    grid-column: 1 / 3;  /* С 1 по 3 колонку */
+    /* или */
+    grid-column: span 2;  /* Занимает 2 колонки */
+}
+
+/* Элемент занимает несколько строк */
+.item-tall {
+    grid-row: 1 / 3;      /* С 1 по 3 строку */
+    /* или */
+    grid-row: span 2;     /* Занимает 2 строки */
+}
+
+/* ========================================
+   ОБЩИЕ СТИЛИ
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.app {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #2d3436;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #2d3436;
+    margin-bottom: 15px;
+}
+
+/* ========================================
+   ОТОБРАЖЕНИЕ ЦИТАТЫ
+   ======================================== */
+
+.quote-display {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
+}
+
+.quote-text {
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    min-height: 60px;
+}
+
+.quote-author {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: white;
+    color: #6c5ce7;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+}
+
+.btn-success {
+    background: #27ae60;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #219a52;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: white;
+    font-size: 13px;
+    padding: 6px 14px;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+    transform: scale(1.05);
+}
+
+/* ========================================
+   ФОРМА ДОБАВЛЕНИЯ
+   ======================================== */
+
+.add-section {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    margin-bottom: 30px;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.add-form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 70px;
+    transition: border-color 0.3s;
+}
+
+.add-form textarea:focus {
+    outline: none;
+    border-color: #6c5ce7;
+}
+
+.add-form input {
+    padding: 12px 16px;
+    border: 2px solid #dfe6e9;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.add-form input:focus {
+    outline: none;
+    border-color: #6c5ce7;
+}
+
+.add-form button {
+    align-self: flex-start;
+}
+
+/* ========================================
+   СПИСОК ЦИТАТ (GRID)
+   ======================================== */
+
+.list-section {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+/* ===== GRID ===== */
+.quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* ===== КАРТОЧКА ЦИТАТЫ ===== */
+.quote-card {
+    background: #f8f9fa;
+    padding: 18px 20px;
+    border-radius: 10px;
+    border-left: 4px solid #6c5ce7;
+    transition: all 0.3s;
+    animation: fadeIn 0.3s ease forwards;
+    display: flex;
+    flex-direction: column;
+}
+
+.quote-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.quote-card .card-text {
+    font-size: 15px;
+    color: #2d3436;
+    line-height: 1.6;
+    font-style: italic;
+    flex: 1;
+    margin-bottom: 10px;
+}
+
+.quote-card .card-author {
+    font-size: 14px;
+    color: #6c5ce7;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.quote-card .card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.quote-card .card-actions button {
+    padding: 4px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s;
+}
+
+.quote-card .use-btn {
+    background: #e8f5e9;
+    color: #27ae60;
+}
+
+.quote-card .use-btn:hover {
+    background: #c8e6c9;
+    transform: scale(1.05);
+}
+
+/* ===== ПУСТОЕ СОСТОЯНИЕ ===== */
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    color: #b2bec3;
+}
+
+.empty .emoji {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* ========================================
+   АНИМАЦИИ
+   ======================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ========================================
+   АДАПТИВНОСТЬ
+   ======================================== */
+
+@media (max-width: 600px) {
+    .quote-text {
+        font-size: 18px;
+    }
+    
+    .quote-author {
+        font-size: 16px;
+    }
+    
+    .quotes-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .add-form button {
+        align-self: stretch;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .quote-display {
+        padding: 25px 20px;
+    }
+}

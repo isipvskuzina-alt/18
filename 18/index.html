@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор цитат</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <h1> Генератор цитат</h1>
+        
+        <!-- Основная цитата -->
+        <div class="quote-display">
+            <div class="quote-text" id="quoteText">Нажмите кнопку для получения цитаты</div>
+            <div class="quote-author" id="quoteAuthor">— Автор</div>
+            <button id="randomBtn" class="btn btn-primary"> Случайная цитата</button>
+        </div>
+
+        <!-- Форма добавления -->
+        <div class="add-section">
+            <h2> Добавить цитату</h2>
+            <div class="add-form">
+                <textarea id="quoteInput" placeholder="Введите цитату..."></textarea>
+                <input type="text" id="authorInput" placeholder="Автор">
+                <button id="addBtn" class="btn btn-success"> Добавить</button>
+            </div>
+        </div>
+
+        <!-- Список цитат -->
+        <div class="list-section">
+            <h2> Мои цитаты (<span id="quoteCount">0</span>)</h2>
+            <div class="quotes-grid" id="quotesContainer"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
